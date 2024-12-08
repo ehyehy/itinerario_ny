@@ -1,259 +1,511 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="it">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>New York Itinerary</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f9;
-        }
-        header {
-            background-color: #333;
-            color: white;
-            padding: 1em;
-            text-align: center;
-        }
-        .container {
-            max-width: 1200px;
-            margin: 20px auto;
-            padding: 20px;
-        }
-        .filter {
-            margin-bottom: 20px;
-            display: flex;
-            justify-content: space-between;
-        }
-        .filter label {
-            font-weight: bold;
-        }
-        .card {
-            background: white;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            padding: 20px;
-            margin-bottom: 20px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-        }
-        .card h3 {
-            margin-top: 0;
-        }
-        .card a {
-            color: #007bff;
-            text-decoration: none;
-        }
-        .card a:hover {
-            text-decoration: underline;
-        }
-    </style>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Itinerario NYC</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <style>
+    .filter-btns {
+      margin-bottom: 20px;
+    }
+    .card {
+      padding: .5rem; 
+    }
+    .card-body {
+      padding: .5rem;
+    }
+    .card-title {
+      font-size: 0.9rem;
+      margin-bottom: .3rem;
+    }
+    .btn-sm {
+      font-size: 0.7rem;
+      padding: .2rem .4rem;
+    }
+  </style>
 </head>
-<body>
-    <header>
-        <h1>New York Itinerary</h1>
-    </header>
+<body class="bg-light">
 
-    <div class="container">
-        <div class="filter">
-            <label for="day-filter">Filter by Day:</label>
-            <select id="day-filter" onchange="filterDays()">
-                <option value="all">All</option>
-                <option value="day1">Day 1: Midtown Manhattan</option>
-                <option value="day2">Day 2: Midtown</option>
-                <option value="day3">Day 3: Central Park & Top of the Rock</option>
-                <option value="day4">Day 4: Downtown Manhattan & Brooklyn</option>
-                <option value="day5">Day 5: Hudson Yards & Chelsea</option>
-                <option value="day6">Day 6: Brooklyn & Other Attractions</option>
-            </select>
+<div class="container py-4">
+  <h1 class="mb-4">Itinerario NYC</h1>
+
+  <div class="filter-btns mb-3">
+    <div class="dropdown">
+      <button class="btn btn-primary btn-md dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+        SCEGLI LA DESTINAZIONE
+      </button>
+      <ul class="dropdown-menu">
+        <li><a class="dropdown-item" href="#" onclick="filterCards('all')">Tutte</a></li>
+        <li><a class="dropdown-item" href="#" onclick="filterCards('lower')">Lower</a></li>
+        <li><a class="dropdown-item" href="#" onclick="filterCards('midtown-east')">Midtown East</a></li>
+        <li><a class="dropdown-item" href="#" onclick="filterCards('midtown-ovest')">Midtown Ovest</a></li>
+        <li><a class="dropdown-item" href="#" onclick="filterCards('hudson-chelsea')">Hudson/Chelsea/Flatiron</a></li>
+        <li><a class="dropdown-item" href="#" onclick="filterCards('brooklyn')">Brooklyn</a></li>
+        <li><a class="dropdown-item" href="#" onclick="filterCards('uptown')">Uptown/Harlem</a></li>
+        <li><a class="dropdown-item" href="#" onclick="filterCards('rooftop')">Rooftop extra</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="row g-2">
+    <!-- LOWER -->
+    <div class="col-12 col-md-3 lower">
+      <div class="card">
+        <div class="card-body">
+          <div class="card-title">Memoriale 11/9</div>
+          <a href="https://maps.app.goo.gl/j7DL5pFQyxkff8oK9" target="_blank" class="btn btn-primary btn-sm">Scopri</a>
         </div>
-
-        <div id="itinerary">
-            <div class="card day1">
-                <h3>SUMMIT One Vanderbilt</h3>
-                <p>Experience breathtaking views from this mirrored observation deck.</p>
-                <a href="https://goo.gl/maps/HVJpBN8uxUzo85h36" target="_blank">View on Google Maps</a>
-            </div>
-
-            <div class="card day1">
-                <h3>Grand Central Terminal</h3>
-                <p>Visit this iconic train station with its celestial ceiling artwork.</p>
-                <a href="https://goo.gl/maps/r7UhyywnGyD42PCd7" target="_blank">View on Google Maps</a>
-            </div>
-
-            <div class="card day1">
-                <h3>Fifth Avenue</h3>
-                <p>Explore luxury shopping and famous landmarks along this iconic avenue.</p>
-                <a href="https://goo.gl/maps/j5P6WtZqEU32" target="_blank">View on Google Maps</a>
-            </div>
-
-            <div class="card day1">
-                <h3>New York Public Library</h3>
-                <p>Visit this historic library, known for its stunning architecture and literary significance.</p>
-                <a href="https://goo.gl/maps/kbpyjcQwFh22" target="_blank">View on Google Maps</a>
-            </div>
-
-            <div class="card day1">
-                <h3>St. Patrick's Cathedral</h3>
-                <p>A magnificent neo-Gothic cathedral in the heart of Manhattan.</p>
-                <a href="https://goo.gl/maps/v7r4dFjBRDR2" target="_blank">View on Google Maps</a>
-            </div>
-
-            <div class="card day1">
-                <h3>Rockefeller Center</h3>
-                <p>Famous for its ice skating rink, art deco buildings, and festive decorations.</p>
-                <a href="https://goo.gl/maps/Zf7BQxrHQpn" target="_blank">View on Google Maps</a>
-            </div>
-
-            <div class="card day1">
-                <h3>Radio City Music Hall</h3>
-                <p>An iconic entertainment venue offering world-class performances.</p>
-                <a href="https://goo.gl/maps/HWxqqRe4Bft" target="_blank">View on Google Maps</a>
-            </div>
-
-            <div class="card day1">
-                <h3>Bryant Park</h3>
-                <p>A green oasis in Midtown, great for relaxing and seasonal events.</p>
-                <a href="https://goo.gl/maps/bAkbYXxqewM2" target="_blank">View on Google Maps</a>
-            </div>
-
-            <div class="card day1">
-                <h3>Times Square</h3>
-                <p>The bustling heart of NYC with its dazzling lights and attractions.</p>
-                <a href="https://goo.gl/maps/4q75XYLPt8L2" target="_blank">View on Google Maps</a>
-            </div>
-
-            <div class="card day2">
-                <h3>Empire State Building</h3>
-                <p>A classic NYC experience with panoramic city views.</p>
-                <a href="https://goo.gl/maps/KLmK4z83yAzHMvZ59" target="_blank">View on Google Maps</a>
-            </div>
-
-            <div class="card day2">
-                <h3>Madame Tussauds</h3>
-                <p>Meet lifelike wax figures of your favorite celebrities.</p>
-                <a href="https://goo.gl/maps/wRe9xD2YsBmXYRTk6" target="_blank">View on Google Maps</a>
-            </div>
-
-            <div class="card day2">
-                <h3>Liberty Bagels</h3>
-                <p>Enjoy authentic New York bagels with a variety of delicious toppings.</p>
-                <a href="https://goo.gl/maps/XW5KRy9x1Km" target="_blank">View on Google Maps</a>
-            </div>
-
-            <div class="card day3">
-                <h3>Central Park</h3>
-                <p>Stroll through landmarks like Bethesda Terrace, Strawberry Fields, and Bow Bridge.</p>
-                <a href="https://goo.gl/maps/C3wcukdNFP92" target="_blank">View on Google Maps</a>
-            </div>
-
-            <div class="card day3">
-                <h3>American Museum of Natural History</h3>
-                <p>Explore fascinating exhibits of science, history, and nature.</p>
-                <a href="https://goo.gl/maps/6gN3g2yj9j62" target="_blank">View on Google Maps</a>
-            </div>
-
-            <div class="card day3">
-                <h3>Top of the Rock</h3>
-                <p>Enjoy breathtaking sunset views of the Manhattan skyline.</p>
-                <a href="https://goo.gl/maps/xmRtN1JeFQP2" target="_blank">View on Google Maps</a>
-            </div>
-
-            <div class="card day4">
-                <h3>9/11 Memorial & Museum</h3>
-                <p>Pay respects and learn about the events of September 11, 2001.</p>
-                <a href="https://goo.gl/maps/n5VD9wWqRhM2" target="_blank">View on Google Maps</a>
-            </div>
-
-            <div class="card day4">
-                <h3>Wall Street</h3>
-                <p>Explore the financial district and its iconic landmarks.</p>
-                <a href="https://goo.gl/maps/jYBq1WnCW162" target="_blank">View on Google Maps</a>
-            </div>
-
-            <div class="card day4\">
-                <h3>Brooklyn Bridge</h3>
-                <p>Walk across this historic bridge with stunning views of the city.</p>
-                <a href="https://goo.gl/maps/YL2gN7N9TYM2\" target="_blank\">View on Google Maps</a>
-            </div>
-
-            <div class="card day4\">
-                <h3>Battery Park</h3>
-                <p>Relax and enjoy views of the Statue of Liberty from this green oasis.</p>
-                <a href="https://goo.gl/maps/3zF8yzJc2i72\" target="_blank\">View on Google Maps</a>
-            </div>
-
-            <div class="card day4\">
-                <h3>Brooklyn Heights Promenade</h3>
-                <p>Take in stunning views of Manhattan's skyline from this scenic walkway.</p>
-                <a href="https://goo.gl/maps/8X9h8L4FbNm\" target="_blank\">View on Google Maps</a>
-            </div>
-
-            <div class="card day5">
-                <h3>Vessel at Hudson Yards</h3>
-                <p>Admire the unique honeycomb structure and stunning city views.</p>
-                <a href="https://goo.gl/maps/Z2QRgxAp2RWz7uBJ6" target="_blank">View on Google Maps</a>
-            </div>
-
-            <div class="card day5">
-                <h3>High Line</h3>
-                <p>Walk along this elevated park and enjoy art, greenery, and views of the city.</p>
-                <a href="https://goo.gl/maps/RPgzMZtTpP32" target="_blank">View on Google Maps</a>
-            </div>
-
-            <div class="card day5">
-                <h3>Chelsea Market</h3>
-                <p>Discover a variety of delicious food, shops, and unique vendors in this trendy market.</p>
-                <a href="https://goo.gl/maps/jnhEZzbTgQK2" target="_blank">View on Google Maps</a>
-            </div>
-
-            <div class="card day6">
-                <h3>Brooklyn Botanic Garden</h3>
-                <p>Explore beautiful themed gardens and seasonal floral displays.</p>
-                <a href="https://goo.gl/maps/H3mLFNtYTCM2" target="_blank">View on Google Maps</a>
-            </div>
-
-            <div class="card day6">
-                <h3>Prospect Park</h3>
-                <p>A sprawling urban park with trails, a lake, and natural scenery.</p>
-                <a href="https://goo.gl/maps/G1MWRVz1VCR2" target="_blank">View on Google Maps</a>
-            </div>
-
-            <div class="card day6">
-                <h3>Brooklyn Museum</h3>
-                <p>Discover a wide array of art and historical exhibits.</p>
-                <a href="https://goo.gl/maps/GCmkzSdzR3L2" target="_blank">View on Google Maps</a>
-            </div>
-
-            <div class="card day6">
-                <h3>DUMBO</h3>
-                <p>Visit this trendy neighborhood for art galleries, cafes, and waterfront views.</p>
-                <a href="https://goo.gl/maps/Xx7Gn4xd8GC2" target="_blank">View on Google Maps</a>
-            </div>
-
-            <div class="card day6">
-                <h3>Roosevelt Island Tramway</h3>
-                <p>Take a scenic cable car ride with breathtaking views of the East River and Manhattan.</p>
-                <a href="https://goo.gl/maps/hgKt2DzDyBR2" target="_blank">View on Google Maps</a>
-            </div>
+      </div>
+    </div>
+    <div class="col-12 col-md-3 lower">
+      <div class="card">
+        <div class="card-body">
+          <div class="card-title">Wall Street</div>
+          <a href="https://maps.app.goo.gl/hm4Q3fLNHmqDaSCLA" target="_blank" class="btn btn-primary btn-sm">Scopri</a>
         </div>
+      </div>
+    </div>
+    <div class="col-12 col-md-3 lower">
+      <div class="card">
+        <div class="card-body">
+          <div class="card-title">Battery Park</div>
+          <a href="https://maps.app.goo.gl/hkz1Z2xsQth54ArD6" target="_blank" class="btn btn-primary btn-sm">Scopri</a>
+        </div>
+      </div>
+    </div>
+    <div class="col-12 col-md-3 lower">
+      <div class="card">
+        <div class="card-body">
+          <div class="card-title">Pier 35</div>
+          <a href="https://maps.app.goo.gl/VWzHYEezCgmWEXoPA" target="_blank" class="btn btn-primary btn-sm">Scopri</a>
+        </div>
+      </div>
+    </div>
+    <div class="col-12 col-md-3 lower">
+      <div class="card">
+        <div class="card-body">
+          <div class="card-title">Katz’s Delicatessen</div>
+          <a href="https://maps.app.goo.gl/Q47aV95A7QJod8A99" target="_blank" class="btn btn-primary btn-sm">Scopri</a>
+        </div>
+      </div>
+    </div>
+    <div class="col-12 col-md-3 lower">
+      <div class="card">
+        <div class="card-body">
+          <div class="card-title">Attaboy</div>
+          <a href="https://maps.app.goo.gl/qR7xDooedcRo3mNaA" target="_blank" class="btn btn-primary btn-sm">Scopri</a>
+        </div>
+      </div>
+    </div>
+    <div class="col-12 col-md-3 lower">
+      <div class="card">
+        <div class="card-body">
+          <div class="card-title">Brooklyn Bridge</div>
+          <a href="https://maps.app.goo.gl/UuC3kN3fdAQ6R2og6" target="_blank" class="btn btn-primary btn-sm">Scopri</a>
+        </div>
+      </div>
+    </div>
+    <div class="col-12 col-md-3 lower">
+      <div class="card">
+        <div class="card-body">
+          <div class="card-title">Brooklyn Heights Promenade</div>
+          <a href="https://maps.app.goo.gl/r9BUaR5B6TLVfTwy6" target="_blank" class="btn btn-primary btn-sm">Scopri</a>
+        </div>
+      </div>
+    </div>
+    <div class="col-12 col-md-3 lower">
+      <div class="card">
+        <div class="card-body">
+          <div class="card-title">Jane’s Carousel</div>
+          <a href="https://maps.app.goo.gl/4Tj5iPEbkHfBLoMv9" target="_blank" class="btn btn-primary btn-sm">Scopri</a>
+        </div>
+      </div>
     </div>
 
-    <script>
-        function filterDays() {
-            const filter = document.getElementById('day-filter').value;
-            const cards = document.querySelectorAll('.card');
+    <!-- MIDTOWN EAST -->
+    <div class="col-12 col-md-3 midtown-east">
+       <div class="col-12 col-md-3 midtown-east">
+             <div class="card">
+             <div class="card-body">
+                <div class="card-title">Giro in elicottero</div>
+                <a href="https://maps.app.goo.gl/itABGSrtJ8v1t5aC6" target="_blank" class="btn btn-primary btn-sm">Scopri</a>
+               </div>
+           </div>
+       </div>
+      <div class="card">
+        <div class="card-body">
+          <div class="card-title">Fifth Avenue (da Flatiron)</div>
+          <a href="https://maps.app.goo.gl/cB24fjKXh9tq5kgq6" target="_blank" class="btn btn-primary btn-sm">Scopri</a>
+        </div>
+      </div>
+    </div>
+    <div class="col-12 col-md-3 midtown-east">
+      <div class="card">
+        <div class="card-body">
+          <div class="card-title">SUMMIT One Vanderbilt</div>
+          <a href="https://maps.app.goo.gl/oxBsNfJN2cGbt6hV8" target="_blank" class="btn btn-primary btn-sm">Scopri</a>
+        </div>
+      </div>
+    </div>
+    <div class="col-12 col-md-3 midtown-east">
+      <div class="card">
+        <div class="card-body">
+          <div class="card-title">Grand Central Terminal</div>
+          <a href="https://maps.app.goo.gl/qkhtmy3w4umad95h7" target="_blank" class="btn btn-primary btn-sm">Scopri</a>
+        </div>
+      </div>
+    </div>
+    <div class="col-12 col-md-3 midtown-east">
+      <div class="card">
+        <div class="card-body">
+          <div class="card-title">Liberty Bagels</div>
+          <a href="https://maps.app.goo.gl/zE5DGixM6cLuYi6E7" target="_blank" class="btn btn-primary btn-sm">Scopri</a>
+        </div>
+      </div>
+    </div>
+    <div class="col-12 col-md-3 midtown-east">
+      <div class="card">
+        <div class="card-body">
+          <div class="card-title">Bryant Park</div>
+          <a href="https://maps.app.goo.gl/b8zE186ojGCoQvKEA" target="_blank" class="btn btn-primary btn-sm">Scopri</a>
+        </div>
+      </div>
+    </div>
+    <div class="col-12 col-md-3 midtown-east">
+      <div class="card">
+        <div class="card-body">
+          <div class="card-title">NY Public Library+Stavros Niarchos</div>
+          <a href="https://maps.app.goo.gl/EDhNYx38GUPibAwt8" target="_blank" class="btn btn-primary btn-sm">Scopri</a>
+        </div>
+      </div>
+    </div>
+    <div class="col-12 col-md-3 midtown-east">
+      <div class="card">
+        <div class="card-body">
+          <div class="card-title">Cattedrale di S. Patrizio</div>
+          <a href="https://maps.app.goo.gl/UdVavD9AZRzmrCQ28" target="_blank" class="btn btn-primary btn-sm">Scopri</a>
+        </div>
+      </div>
+    </div>
+    <div class="col-12 col-md-3 midtown-east">
+      <div class="card">
+        <div class="card-body">
+          <div class="card-title">Rockefeller Center</div>
+          <a href="https://maps.app.goo.gl/vydJjnRZf4VnYYve9" target="_blank" class="btn btn-primary btn-sm">Scopri</a>
+        </div>
+      </div>
+    </div>
+    <div class="col-12 col-md-3 midtown-east">
+      <div class="card">
+        <div class="card-body">
+          <div class="card-title">Pizza di Joe</div>
+          <a href="#" class="btn btn-primary btn-sm">Scopri</a>
+        </div>
+      </div>
+    </div>
+    <div class="col-12 col-md-3 midtown-east">
+      <div class="card">
+        <div class="card-body">
+          <div class="card-title">203 Fifth Rooftop</div>
+          <a href="https://maps.app.goo.gl/fgvtmhabBJL8GsrU7" target="_blank" class="btn btn-primary btn-sm">Scopri</a>
+        </div>
+      </div>
+    </div>
+    <div class="col-12 col-md-3 midtown-east">
+      <div class="card">
+        <div class="card-body">
+          <div class="card-title">Radio City Music Hall</div>
+          <a href="https://maps.app.goo.gl/Yojdtcm6VrmQNH7t6" target="_blank" class="btn btn-primary btn-sm">Scopri</a>
+        </div>
+      </div>
+    </div>
 
-            cards.forEach(card => {
-                if (filter === 'all' || card.classList.contains(filter)) {
-                    card.style.display = 'block';
-                } else {
-                    card.style.display = 'none';
-                }
-            });
-        }
-    </script>
+    <!-- MIDTOWN OVEST / TIMES SQUARE -->
+    <div class="col-12 col-md-3 midtown-ovest">
+      <div class="card">
+        <div class="card-body">
+          <div class="card-title">Empire State Building</div>
+          <a href="https://maps.app.goo.gl/MmkdmEYtcXHRVyTp9" target="_blank" class="btn btn-primary btn-sm">Scopri</a>
+        </div>
+      </div>
+    </div>
+    <div class="col-12 col-md-3 midtown-ovest">
+      <div class="card">
+        <div class="card-body">
+          <div class="card-title">Dave’s (Carhartt)</div>
+          <a href="https://maps.app.goo.gl/6ufYg4X5QApfkxn19" target="_blank" class="btn btn-primary btn-sm">Scopri</a>
+        </div>
+      </div>
+    </div>
+    <div class="col-12 col-md-3 midtown-ovest">
+      <div class="card">
+        <div class="card-body">
+          <div class="card-title">Madame Tussauds</div>
+          <a href="https://maps.app.goo.gl/hrngeG6XtEHwpBrK8" target="_blank" class="btn btn-primary btn-sm">Scopri</a>
+        </div>
+      </div>
+    </div>
+    <div class="col-12 col-md-3 midtown-ovest">
+      <div class="card">
+        <div class="card-body">
+          <div class="card-title">Shake Shack</div>
+          <a href="https://maps.app.goo.gl/GhZ64xsbSyv1mjer7" target="_blank" class="btn btn-primary btn-sm">Scopri</a>
+        </div>
+      </div>
+    </div>
+    <div class="col-12 col-md-3 midtown-ovest">
+      <div class="card">
+        <div class="card-body">
+          <div class="card-title">Times Square</div>
+          <a href="https://maps.app.goo.gl/cfubCj4jXFqFdLNb9" target="_blank" class="btn btn-primary btn-sm">Scopri</a>
+        </div>
+      </div>
+    </div>
+    <div class="col-12 col-md-3 midtown-ovest">
+      <div class="card">
+        <div class="card-body">
+          <div class="card-title">Grand Slam Souvenir</div>
+          <a href="https://maps.app.goo.gl/SBbehx7oVQbT8eyc6" target="_blank" class="btn btn-primary btn-sm">Scopri</a>
+        </div>
+      </div>
+    </div>
+    <div class="col-12 col-md-3 midtown-ovest">
+      <div class="card">
+        <div class="card-body">
+          <div class="card-title">Broadway Theater</div>
+          <a href="https://maps.app.goo.gl/Dz58sWr5pDhA8qJD9" target="_blank" class="btn btn-primary btn-sm">Scopri</a>
+        </div>
+      </div>
+    </div>
+    <div class="col-12 col-md-3 midtown-ovest">
+      <div class="card">
+        <div class="card-body">
+          <div class="card-title">Msocial (Rooftop)</div>
+          <a href="https://maps.app.goo.gl/XZkF512M7pLv2JC3A" target="_blank" class="btn btn-primary btn-sm">Scopri</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- HUDSON YARDS, CHELSEA, FLATIRON -->
+    <div class="col-12 col-md-3 hudson-chelsea">
+      <div class="card">
+        <div class="card-body">
+          <div class="card-title">Chelsea Market</div>
+          <a href="https://maps.app.goo.gl/4nwWFPE9LnDGNUXb9" target="_blank" class="btn btn-primary btn-sm">Scopri</a>
+        </div>
+      </div>
+    </div>
+    <div class="col-12 col-md-3 hudson-chelsea">
+      <div class="card">
+        <div class="card-body">
+          <div class="card-title">High Line</div>
+          <a href="https://maps.app.goo.gl/RmB1ZWJ7i3rbGnjw7" target="_blank" class="btn btn-primary btn-sm">Scopri</a>
+        </div>
+      </div>
+    </div>
+    <div class="col-12 col-md-3 hudson-chelsea">
+      <div class="card">
+        <div class="card-body">
+          <div class="card-title">Pier 97</div>
+          <a href="https://maps.app.goo.gl/CHu3cZb8dsh7yMMm9" target="_blank" class="btn btn-primary btn-sm">Scopri</a>
+        </div>
+      </div>
+    </div>
+    <div class="col-12 col-md-3 hudson-chelsea">
+      <div class="card">
+        <div class="card-body">
+          <div class="card-title">Edge Hudson Yards</div>
+          <a href="https://maps.app.goo.gl/aq6vbJwRXXFEjP7G6" target="_blank" class="btn btn-primary btn-sm">Scopri</a>
+        </div>
+      </div>
+    </div>
+    <div class="col-12 col-md-3 hudson-chelsea">
+      <div class="card">
+        <div class="card-body">
+          <div class="card-title">The Vessel (esterno)</div>
+          <a href="https://maps.app.goo.gl/3qbUGozgmuMuAEJ9A" target="_blank" class="btn btn-primary btn-sm">Scopri</a>
+        </div>
+      </div>
+    </div>
+    <div class="col-12 col-md-3 hudson-chelsea">
+      <div class="card">
+        <div class="card-body">
+          <div class="card-title">Pancakes da Bubby’s</div>
+          <a href="https://maps.app.goo.gl/9GjUeap7T6nw21py8" target="_blank" class="btn btn-primary btn-sm">Scopri</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- BROOKLYN -->
+    <div class="col-12 col-md-3 brooklyn">
+      <div class="card">
+        <div class="card-body">
+          <div class="card-title">Coney Island</div>
+          <a href="https://maps.app.goo.gl/PpUrJ6hNFDsmGkXk8" target="_blank" class="btn btn-primary btn-sm">Scopri</a>
+        </div>
+      </div>
+    </div>
+    <div class="col-12 col-md-3 brooklyn">
+      <div class="card">
+        <div class="card-body">
+          <div class="card-title">Manhattan Bridge + DUMBO</div>
+          <a href="#" class="btn btn-primary btn-sm">Scopri</a>
+        </div>
+      </div>
+    </div>
+    <div class="col-12 col-md-3 brooklyn">
+      <div class="card">
+        <div class="card-body">
+          <div class="card-title">Squibb Park Bridge</div>
+          <a href="https://maps.app.goo.gl/8kz9MxAVYRA657DZ8" target="_blank" class="btn btn-primary btn-sm">Scopri</a>
+        </div>
+      </div>
+    </div>
+    <div class="col-12 col-md-3 brooklyn">
+      <div class="card">
+        <div class="card-body">
+          <div class="card-title">Clinton Street Brooklyn 150</div>
+          <a href="https://maps.app.goo.gl/DPo7MYFrx5zrUSpf7" target="_blank" class="btn btn-primary btn-sm">Scopri</a>
+        </div>
+      </div>
+    </div>
+    <div class="col-12 col-md-3 brooklyn">
+      <div class="card">
+        <div class="card-body">
+          <div class="card-title">Domino Park</div>
+          <a href="https://maps.app.goo.gl/1DJbM8HyxjvPzq4f6" target="_blank" class="btn btn-primary btn-sm">Scopri</a>
+        </div>
+      </div>
+    </div>
+    <div class="col-12 col-md-3 brooklyn">
+      <div class="card">
+        <div class="card-body">
+          <div class="card-title">Westlight (Rooftop)</div>
+          <a href="https://maps.app.goo.gl/xmnCuV8Yu5Qq3ePw9" target="_blank" class="btn btn-primary btn-sm">Scopri</a>
+        </div>
+      </div>
+    </div>
+    <div class="col-12 col-md-3 brooklyn">
+      <div class="card">
+        <div class="card-body">
+          <div class="card-title">10 ft Single by Stella Dallas</div>
+          <a href="https://maps.app.goo.gl/ZULhZuKk25nx4Zds9" target="_blank" class="btn btn-primary btn-sm">Scopri</a>
+        </div>
+      </div>
+    </div>
+    <div class="col-12 col-md-3 brooklyn">
+      <div class="card">
+        <div class="card-body">
+          <div class="card-title">L’Industrie Pizzeria</div>
+          <a href="https://maps.app.goo.gl/F6NMwypDYuxPgsJM7" target="_blank" class="btn btn-primary btn-sm">Scopri</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- UPTOWN / HARLEM -->
+    <div class="col-12 col-md-3 uptown">
+      <div class="card">
+        <div class="card-body">
+          <div class="card-title">Central Park</div>
+          <a href="https://maps.app.goo.gl/gM1BC1b1nP7b157C6" target="_blank" class="btn btn-primary btn-sm">Scopri</a>
+        </div>
+      </div>
+    </div>
+    <div class="col-12 col-md-3 uptown">
+      <div class="card">
+        <div class="card-body">
+          <div class="card-title">American Museum of Natural History</div>
+          <a href="https://maps.app.goo.gl/GcsVZgkit8M6uWmp7" target="_blank" class="btn btn-primary btn-sm">Scopri</a>
+        </div>
+      </div>
+    </div>
+    <div class="col-12 col-md-3 uptown">
+      <div class="card">
+        <div class="card-body">
+          <div class="card-title">Harlem Messa Gospel</div>
+          <a href="https://maps.app.goo.gl/6WZmQzPArh73EXYh7" target="_blank" class="btn btn-primary btn-sm">Scopri</a>
+        </div>
+      </div>
+    </div>
+    <div class="col-12 col-md-3 uptown">
+      <div class="card">
+        <div class="card-body">
+          <div class="card-title">Funivia Roosevelt Island</div>
+          <a href="https://maps.app.goo.gl/Hm5CY2mzibpBAKbw7" target="_blank" class="btn btn-primary btn-sm">Scopri</a>
+        </div>
+      </div>
+    </div>
+    <div class="col-12 col-md-3 uptown">
+      <div class="card">
+        <div class="card-body">
+          <div class="card-title">Top of the Rock</div>
+          <a href="https://maps.app.goo.gl/fQ1EreVwFama3woi8" target="_blank" class="btn btn-primary btn-sm">Scopri</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- ROOFTOP EXTRA -->
+    <div class="col-12 col-md-3 rooftop">
+      <div class="card">
+        <div class="card-body">
+          <div class="card-title">Magic Hour (Times Square)</div>
+          <a href="#" class="btn btn-primary btn-sm">Scopri</a>
+        </div>
+      </div>
+    </div>
+    <div class="col-12 col-md-3 rooftop">
+      <div class="card">
+        <div class="card-body">
+          <div class="card-title">Nubeluz (NoMad)</div>
+          <a href="#" class="btn btn-primary btn-sm">Scopri</a>
+        </div>
+      </div>
+    </div>
+    <div class="col-12 col-md-3 rooftop">
+      <div class="card">
+        <div class="card-body">
+          <div class="card-title">The Highlight Room (LES)</div>
+          <a href="#" class="btn btn-primary btn-sm">Scopri</a>
+        </div>
+      </div>
+    </div>
+    <div class="col-12 col-md-3 rooftop">
+      <div class="card">
+        <div class="card-body">
+          <div class="card-title">Sandbar Rooftop</div>
+          <a href="#" class="btn btn-primary btn-sm">Scopri</a>
+        </div>
+      </div>
+    </div>
+    <div class="col-12 col-md-3 rooftop">
+      <div class="card">
+        <div class="card-body">
+          <div class="card-title">The Fleur Room (Moxy Chelsea)</div>
+          <a href="#" class="btn btn-primary btn-sm">Scopri</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+function filterCards(category) {
+  let cards = document.querySelectorAll('.col-12, .col-md-3');
+  if(category === 'all') {
+    cards.forEach(card => card.style.display = 'block');
+  } else {
+    cards.forEach(card => {
+      if(card.classList.contains(category)) {
+        card.style.display = 'block';
+      } else {
+        card.style.display = 'none';
+      }
+    });
+  }
+}
+</script>
 </body>
 </html>
-
